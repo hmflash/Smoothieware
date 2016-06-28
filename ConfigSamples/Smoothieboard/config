@@ -9,16 +9,16 @@ mm_per_arc_segment                           0.5              # Arcs are cut int
                                                               # coordinates robots ).
 
 # Arm solution configuration : Cartesian robot. Translates mm positions into stepper positions
-alpha_steps_per_mm                           80               # Steps per mm for alpha stepper
-beta_steps_per_mm                            80               # Steps per mm for beta stepper
-gamma_steps_per_mm                           1600             # Steps per mm for gamma stepper
+alpha_steps_per_mm                           400              # Steps per mm for alpha stepper
+beta_steps_per_mm                            400              # Steps per mm for beta stepper
+gamma_steps_per_mm                           800              # Steps per mm for gamma stepper
 
 # Planner module configuration : Look-ahead and acceleration configuration
 planner_queue_size                           32               # DO NOT CHANGE THIS UNLESS YOU KNOW EXACTLY WHAT YOU ARE DOING
-acceleration                                 3000             # Acceleration in mm/second/second.
-#z_acceleration                              500              # Acceleration for Z only moves in mm/s^2, 0 uses acceleration which is the default. DO NOT SET ON A DELTA
+acceleration                                 1000             # Acceleration in mm/second/second.
+z_acceleration                               500              # Acceleration for Z only moves in mm/s^2, 0 uses acceleration which is the default. DO NOT SET ON A DELTA
 acceleration_ticks_per_second                1000             # Number of times per second the speed is updated
-junction_deviation                           0.05             # Similar to the old "max_jerk", in millimeters,
+junction_deviation                           0.02             # Similar to the old "max_jerk", in millimeters,
                                                               # see https://github.com/grbl/grbl/blob/master/planner.c
                                                               # and https://github.com/grbl/grbl/wiki/Configuring-Grbl-v0.8
                                                               # Lower values mean being more careful, higher values means being
@@ -39,19 +39,19 @@ z_axis_max_speed                             300              # mm/min
 alpha_step_pin                               2.0              # Pin for alpha stepper step signal
 alpha_dir_pin                                0.5              # Pin for alpha stepper direction
 alpha_en_pin                                 0.4              # Pin for alpha enable pin
-alpha_current                                1.5              # X stepper motor current
+alpha_current                                1.4              # X stepper motor current
 alpha_max_rate                               30000.0          # mm/min
 
 beta_step_pin                                2.1              # Pin for beta stepper step signal
 beta_dir_pin                                 0.11             # Pin for beta stepper direction
 beta_en_pin                                  0.10             # Pin for beta enable
-beta_current                                 1.5              # Y stepper motor current
+beta_current                                 1.4              # Y stepper motor current
 beta_max_rate                                30000.0          # mm/min
 
 gamma_step_pin                               2.2              # Pin for gamma stepper step signal
 gamma_dir_pin                                0.20             # Pin for gamma stepper direction
 gamma_en_pin                                 0.19             # Pin for gamma enable
-gamma_current                                1.5              # Z stepper motor current
+gamma_current                                1.4              # Z stepper motor current
 gamma_max_rate                               300.0            # mm/min
 
 ## System configuration
@@ -75,7 +75,7 @@ currentcontrol_module_enable                 true             #
 
 ## Extruder module configuration
 extruder.hotend.enable                          true             # Whether to activate the extruder module at all. All configuration is ignored if false
-extruder.hotend.steps_per_mm                    140              # Steps per mm for extruder stepper
+extruder.hotend.steps_per_mm                    856              # Steps per mm for extruder stepper
 extruder.hotend.default_feed_rate               600              # Default rate ( mm/minute ) for moves where only the extruder moves
 extruder.hotend.acceleration                    500              # Acceleration for the stepper motor mm/sec²
 extruder.hotend.max_speed                       50               # mm/s
@@ -97,7 +97,7 @@ extruder.hotend.en_pin                          0.21             # Pin for extru
 #extruder.hotend.retract_zlift_length            0               # zlift on retract in mm, 0 disables
 #extruder.hotend.retract_zlift_feedrate          6000            # zlift feedrate in mm/min (Note mm/min NOT mm/sec)
 
-delta_current                                1.5              # First extruder stepper motor current
+delta_current                                0.7              # First extruder stepper motor current
 
 # Second extruder module configuration
 #extruder.hotend2.enable                          true             # Whether to activate the extruder module at all. All configuration is ignored if false
@@ -132,9 +132,9 @@ laser_module_enable                          false            # Whether to activ
 # First hotend configuration
 temperature_control.hotend.enable            true             # Whether to activate this ( "hotend" ) module at all.
                                                               # All configuration is ignored if false.
-temperature_control.hotend.thermistor_pin    0.23             # Pin for the thermistor to read
+temperature_control.hotend.thermistor_pin    0.24             # Pin for the thermistor to read
 temperature_control.hotend.heater_pin        2.7              # Pin that controls the heater, set to nc if a readonly thermistor is being defined
-temperature_control.hotend.thermistor        EPCOS100K        # see http://smoothieware.org/temperaturecontrol#toc5
+temperature_control.hotend.thermistor        Semitec          # see http://smoothieware.org/temperaturecontrol#toc5
 #temperature_control.hotend.beta             4066             # or set the beta value
 temperature_control.hotend.set_m_code        104              #
 temperature_control.hotend.set_and_wait_m_code 109            #
@@ -142,9 +142,9 @@ temperature_control.hotend.designator        T                #
 #temperature_control.hotend.max_temp         300              # Set maximum temperature - Will prevent heating above 300 by default
 #temperature_control.hotend.min_temp         0                # Set minimum temperature - Will prevent heating below if set
 
-#temperature_control.hotend.p_factor         13.7             # permanently set the PID values after an auto pid
-#temperature_control.hotend.i_factor         0.097            #
-#temperature_control.hotend.d_factor         24               #
+temperature_control.hotend.p_factor          73.4             # permanently set the PID values after an auto pid
+temperature_control.hotend.i_factor          7.546            #
+temperature_control.hotend.d_factor          178              #
 
 #temperature_control.hotend.max_pwm          64               # max pwm, 64 is a good value if driving a 12v resistor with 24v.
 
@@ -167,9 +167,9 @@ temperature_control.hotend.designator        T                #
 #temperature_control.hotend2.max_pwm          64               # max pwm, 64 is a good value if driving a 12v resistor with 24v.
 
 temperature_control.bed.enable               true             #
-temperature_control.bed.thermistor_pin       0.24             #
+temperature_control.bed.thermistor_pin       0.23             #
 temperature_control.bed.heater_pin           2.5              #
-temperature_control.bed.thermistor           Honeywell100K    # see http://smoothieware.org/temperaturecontrol#toc5
+temperature_control.bed.thermistor           EPCOS100K        # see http://smoothieware.org/temperaturecontrol#toc5
 #temperature_control.bed.beta                3974             # or set the beta value
 
 temperature_control.bed.set_m_code           140              #
@@ -180,11 +180,15 @@ temperature_control.bed.designator           B                #
 #temperature_control.bed.hysteresis           2.0             # set to the temperature in degrees C to use as hysteresis
                                                               # when using bang bang
 
+temperature_control.bed.p_factor             159.4            # permanently set the PID values after an auto pid
+temperature_control.bed.i_factor             6.833            #
+temperature_control.bed.d_factor             929              #
+
 ## Switch module for fan control
 switch.fan.enable                            true             #
 switch.fan.input_on_command                  M106             #
 switch.fan.input_off_command                 M107             #
-switch.fan.output_pin                        2.6              #
+switch.fan.output_pin                        2.4              #
 switch.fan.output_type                       pwm              # pwm output settable with S parameter in the input_on_comand
 #switch.fan.max_pwm                           255              # set max pwm for the pin default is 255
 
@@ -270,19 +274,19 @@ zprobe.probe_height                          5               # how much above be
 #leveling-strategy.three-point-leveling.save_plane     false       # set to true to allow the bed plane to be saved with M500 default is false
 
 ## Panel
-panel.enable                                 false             # set to true to enable the panel code
+panel.enable                                 true             # set to true to enable the panel code
 
 # Example for reprap discount GLCD
 # on glcd EXP1 is to left and EXP2 is to right, pin 1 is bottom left, pin 2 is top left etc.
 # +5v is EXP1 pin 10, Gnd is EXP1 pin 9
-#panel.lcd                                   reprap_discount_glcd     #
-#panel.spi_channel                           0                 # spi channel to use  ; GLCD EXP1 Pins 3,5 (MOSI, SCLK)
-#panel.spi_cs_pin                            0.16              # spi chip select     ; GLCD EXP1 Pin 4
-#panel.encoder_a_pin                         3.25!^            # encoder pin         ; GLCD EXP2 Pin 3
-#panel.encoder_b_pin                         3.26!^            # encoder pin         ; GLCD EXP2 Pin 5
-#panel.click_button_pin                      1.30!^            # click button        ; GLCD EXP1 Pin 2
-#panel.buzz_pin                              1.31              # pin for buzzer      ; GLCD EXP1 Pin 1
-#panel.back_button_pin                       2.11!^            # back button         ; GLCD EXP2 Pin 8
+panel.lcd                                    reprap_discount_glcd     #
+panel.spi_channel                            0                 # spi channel to use  ; GLCD EXP1 Pins 3,5 (MOSI, SCLK)
+panel.spi_cs_pin                             0.16              # spi chip select     ; GLCD EXP1 Pin 4
+panel.encoder_a_pin                          3.25!^            # encoder pin         ; GLCD EXP2 Pin 3
+panel.encoder_b_pin                          3.26!^            # encoder pin         ; GLCD EXP2 Pin 5
+panel.click_button_pin                       1.30!^            # click button        ; GLCD EXP1 Pin 2
+panel.buzz_pin                               1.31              # pin for buzzer      ; GLCD EXP1 Pin 1
+panel.back_button_pin                        2.11!^            # back button         ; GLCD EXP2 Pin 8
 
 # pins used with other panels
 #panel.up_button_pin                         0.1!              # up button if used
@@ -310,7 +314,7 @@ custom_menu.power_off.command              M81               #
 
 
 ## Network settings
-network.enable                               false            # enable the ethernet network services
+network.enable                               true            # enable the ethernet network services
 network.webserver.enable                     true             # enable the webserver
 network.telnet.enable                        true             # enable the telnet server
 network.ip_address                           auto             # use dhcp to get ip address

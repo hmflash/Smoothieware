@@ -112,9 +112,9 @@ temperature_control.hotend.designator        T                #
 #temperature_control.hotend.max_temp         300              # Set maximum temperature - Will prevent heating above 300 by default
 #temperature_control.hotend.min_temp         0                # Set minimum temperature - Will prevent heating below 0 by default
 
-temperature_control.hotend.p_factor          62.2             #
-temperature_control.hotend.i_factor          6.272            #
-temperature_control.hotend.d_factor          154              #
+temperature_control.hotend.p_factor          38.4             #
+temperature_control.hotend.i_factor          2.519            #
+temperature_control.hotend.d_factor          146              #
 
 #temperature_control.hotend.max_pwm          64               # max pwm, 64 is a good value if driving a 12v resistor with 24v.
 

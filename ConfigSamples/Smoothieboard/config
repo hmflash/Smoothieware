@@ -111,8 +111,8 @@ extruder.hotend2.step_pin                        2.8              # Pin for extr
 extruder.hotend2.dir_pin                         2.13             # Pin for extruder dir signal
 extruder.hotend2.en_pin                          4.29             # Pin for extruder enable signal
 
-extruder.hotend2.x_offset                        18.0             # x offset from origin in mm
-extruder.hotend2.y_offset                        0                # y offset from origin in mm
+extruder.hotend2.x_offset                        18.11            # x offset from origin in mm
+extruder.hotend2.y_offset                        -0.07            # y offset from origin in mm
 extruder.hotend2.z_offset                        0                # z offset from origin in mm
 
 # firmware retract settings when using G10/G11, these are the defaults if not defined, must be defined for each extruder if not using the defaults

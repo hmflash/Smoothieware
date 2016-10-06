@@ -43,6 +43,8 @@ class Robot : public Module {
         float get_default_acceleration() const { return default_acceleration; }
         void setToolOffset(const float offset[N_PRIMARY_AXIS]);
         float get_feed_rate() const;
+        float get_s_value() const { return s_value; }
+        void set_s_value(float s) { s_value= s; }
         void  push_state();
         void  pop_state();
         void check_max_actuator_speeds();

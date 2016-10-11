@@ -13,7 +13,7 @@ mm_max_arc_error                             0.01             # The maximum erro
 # Arm solution configuration : Cartesian robot. Translates mm positions into stepper positions
 alpha_steps_per_mm                           400              # Steps per mm for alpha stepper
 beta_steps_per_mm                            400              # Steps per mm for beta stepper
-gamma_steps_per_mm                           800              # Steps per mm for gamma stepper
+gamma_steps_per_mm                           3200             # Steps per mm for gamma stepper
 
 # Planner module configuration : Look-ahead and acceleration configuration
 planner_queue_size                           32               # DO NOT CHANGE THIS UNLESS YOU KNOW EXACTLY WHAT YOU ARE DOING

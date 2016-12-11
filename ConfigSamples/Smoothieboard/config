@@ -52,7 +52,7 @@ beta_max_rate                                30000.0          # mm/min
 gamma_step_pin                               2.2              # Pin for gamma stepper step signal
 gamma_dir_pin                                0.20             # Pin for gamma stepper direction
 gamma_en_pin                                 0.19             # Pin for gamma enable
-gamma_current                                1.8              # Z stepper motor current
+gamma_current                                0.9              # Z stepper motor current
 gamma_max_rate                               300.0            # mm/min
 
 ## System configuration
@@ -98,7 +98,7 @@ extruder.hotend.z_offset                        0                # z offset from
 #extruder.hotend.retract_zlift_length            0               # zlift on retract in mm, 0 disables
 #extruder.hotend.retract_zlift_feedrate          6000            # zlift feedrate in mm/min (Note mm/min NOT mm/sec)
 
-delta_current                                0.85             # First extruder stepper motor current
+delta_current                                0.90             # First extruder stepper motor current
 
 # Second extruder module configuration
 extruder.hotend2.enable                          true             # Whether to activate the extruder module at all. All configuration is ignored if false
@@ -111,8 +111,8 @@ extruder.hotend2.step_pin                        2.8              # Pin for extr
 extruder.hotend2.dir_pin                         2.13             # Pin for extruder dir signal
 extruder.hotend2.en_pin                          4.29             # Pin for extruder enable signal
 
-extruder.hotend2.x_offset                        18.11            # x offset from origin in mm
-extruder.hotend2.y_offset                        -0.07            # y offset from origin in mm
+extruder.hotend2.x_offset                        0                # x offset from origin in mm
+extruder.hotend2.y_offset                        0                # y offset from origin in mm
 extruder.hotend2.z_offset                        0                # z offset from origin in mm
 
 # firmware retract settings when using G10/G11, these are the defaults if not defined, must be defined for each extruder if not using the defaults
@@ -123,7 +123,7 @@ extruder.hotend2.z_offset                        0                # z offset fro
 #extruder.hotend2.retract_zlift_length           0               # zlift on retract in mm, 0 disables
 #extruder.hotend2.retract_zlift_feedrate         6000            # zlift feedrate in mm/min (Note mm/min NOT mm/sec)
 
-epsilon_current                              0.85             # Second extruder stepper motor current
+epsilon_current                              0.90             # Second extruder stepper motor current
 
 
 ## Laser module configuration

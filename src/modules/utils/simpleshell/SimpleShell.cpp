@@ -57,6 +57,7 @@ extern "C" uint32_t  __end__;
 extern "C" uint32_t  __malloc_free_list;
 extern "C" uint32_t  _sbrk(int size);
 
+
 // command lookup table
 const SimpleShell::ptentry_t SimpleShell::commands_table[] = {
     {"ls",       SimpleShell::ls_command},
@@ -65,6 +66,7 @@ const SimpleShell::ptentry_t SimpleShell::commands_table[] = {
     {"cat",      SimpleShell::cat_command},
     {"rm",       SimpleShell::rm_command},
     {"mv",       SimpleShell::mv_command},
+    {"mkdir",    SimpleShell::mkdir_command},
     {"upload",   SimpleShell::upload_command},
     {"reset",    SimpleShell::reset_command},
     {"dfu",      SimpleShell::dfu_command},
@@ -238,6 +240,7 @@ void SimpleShell::on_console_line_received( void *argument )
                     Gcode gcode("G28", new_message.stream);
                     THEKERNEL->call_event(ON_GCODE_RECEIVED, &gcode);
                 }
+                new_message.stream->printf("ok\n");
                 break;
 
             default:
@@ -262,6 +265,9 @@ void SimpleShell::on_console_line_received( void *argument )
 
         } else if (cmd == "play" || cmd == "progress" || cmd == "abort" || cmd == "suspend" || cmd == "resume") {
             // these are handled by Player module
+
+        } else if (cmd == "fire") {
+            // these are handled by Laser module
 
         } else if (cmd == "ok") {
             // probably an echo so reply ok
@@ -337,6 +343,15 @@ void SimpleShell::mv_command( string parameters, StreamOutput *stream )
     int s = rename(from.c_str(), to.c_str());
     if (s != 0) stream->printf("Could not rename %s to %s\r\n", from.c_str(), to.c_str());
     else stream->printf("renamed %s to %s\r\n", from.c_str(), to.c_str());
+}
+
+// Create a new directory
+void SimpleShell::mkdir_command( string parameters, StreamOutput *stream )
+{
+    string path = absolute_from_relative(shift_parameter( parameters ));
+    int result = mkdir(path.c_str(), 0);
+    if (result != 0) stream->printf("could not create directory %s\r\n", path.c_str());
+    else stream->printf("created directory %s\r\n", path.c_str());
 }
 
 // Change current absolute path to provided path
@@ -813,7 +828,7 @@ void SimpleShell::get_command( string parameters, StreamOutput *stream)
     } else if (what == "state") {
         // also $G
         // [G0 G54 G17 G21 G90 G94 M0 M5 M9 T0 F0.]
-        stream->printf("[G%d %s G%d G%d G%d G94 M0 M5 M9 T%d F%1.4f]\n",
+        stream->printf("[G%d %s G%d G%d G%d G94 M0 M5 M9 T%d F%1.4f S%1.4f]\n",
             THEKERNEL->gcode_dispatch->get_modal_command(),
             wcs2gcode(THEROBOT->get_current_wcs()).c_str(),
             THEROBOT->plane_axis_0 == X_AXIS && THEROBOT->plane_axis_1 == Y_AXIS && THEROBOT->plane_axis_2 == Z_AXIS ? 17 :
@@ -822,7 +837,8 @@ void SimpleShell::get_command( string parameters, StreamOutput *stream)
             THEROBOT->inch_mode ? 20 : 21,
             THEROBOT->absolute_mode ? 90 : 91,
             get_active_tool(),
-            THEROBOT->from_millimeters(THEROBOT->get_feed_rate()));
+            THEROBOT->from_millimeters(THEROBOT->get_feed_rate()),
+            THEROBOT->get_s_value());
 
     } else if (what == "status") {
         // also ? on serial and usb

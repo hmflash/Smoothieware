@@ -79,21 +79,21 @@ extruder.hotend.en_pin                          0.21          # Pin for extruder
 delta_current                                    0.9          # First extruder stepper motor current
 
 # Second extruder module configuration
-#extruder.hotend2.enable                         true         # Whether to activate the extruder module at all. All configuration is ignored if false
-#extruder.hotend2.steps_per_mm                   140          # Steps per mm for extruder stepper
-#extruder.hotend2.default_feed_rate              600          # Default rate ( mm/minute ) for moves where only the extruder moves
-#extruder.hotend2.acceleration                   500          # Acceleration for the stepper motor, as of 0.6, arbitrary ratio
-#extruder.hotend2.max_speed                      50           # mm/s
+extruder.hotend2.enable                          true         # Whether to activate the extruder module at all. All configuration is ignored if false
+extruder.hotend2.steps_per_mm                    1562         # Steps per mm for extruder stepper
+extruder.hotend2.default_feed_rate               600          # Default rate ( mm/minute ) for moves where only the extruder moves
+extruder.hotend2.acceleration                    500          # Acceleration for the stepper motor, as of 0.6, arbitrary ratio
+extruder.hotend2.max_speed                       50           # mm/s
 
-#extruder.hotend2.step_pin                       2.8          # Pin for extruder step signal
-#extruder.hotend2.dir_pin                        2.13         # Pin for extruder dir signal ( add '!' to reverse direction )
-#extruder.hotend2.en_pin                         4.29         # Pin for extruder enable signal
+extruder.hotend2.step_pin                        2.8          # Pin for extruder step signal
+extruder.hotend2.dir_pin                         2.13         # Pin for extruder dir signal ( add '!' to reverse direction )
+extruder.hotend2.en_pin                          4.29         # Pin for extruder enable signal
 
 #extruder.hotend2.x_offset                       0            # x offset from origin in mm
 #extruder.hotend2.y_offset                       25.0         # y offset from origin in mm
 #extruder.hotend2.z_offset                       0            # z offset from origin in mm
 
-#epsilon_current                                 1.5          # Second extruder stepper motor current
+epsilon_current                                  0.9          # Second extruder stepper motor current
 
 
 ## Laser module configuration
@@ -134,8 +134,8 @@ temperature_control.hotend.designator        T                # Designator lette
 # PID configuration 
 # See http://smoothieware.org/temperaturecontrol#pid
 temperature_control.hotend.p_factor          39.7             # P ( proportional ) factor
-temperature_control.hotend.i_factor          2.065            # I ( integral ) factor
-temperature_control.hotend.d_factor          191              # D ( derivative ) factor
+temperature_control.hotend.i_factor          2.265            # I ( integral ) factor
+temperature_control.hotend.d_factor          175              # D ( derivative ) factor
 
 #temperature_control.hotend.max_pwm          64               # Max pwm, 64 is a good value if driving a 12v resistor with 24v.
 
@@ -190,6 +190,7 @@ switch.misc.input_on_command                 M42              # Command that wil
 switch.misc.input_off_command                M43              # Command that will turn this switch off
 switch.misc.output_pin                       2.4              # Pin this module controls
 switch.misc.output_type                      digital          # Digital means this is just an on or off pin
+switch.misc.ignore_on_halt                   true             # Don't change state on HALT condition
 
 ## Temperatureswitch
 # See http://smoothieware.org/temperatureswitch
@@ -321,13 +322,34 @@ panel.bed_temperature                        60                # Temp to set bed
 
 ## Custom menus : Example of a custom menu entry, which will show up in the Custom entry.
 # NOTE _ gets converted to space in the menu and commands, | is used to separate multiple commands
-custom_menu.power_on.enable                true              #
-custom_menu.power_on.name                  Power_on          #
-custom_menu.power_on.command               M80               #
+custom_menu.a.enable  true
+custom_menu.a.name    Heat_Off
+custom_menu.a.command M104_S0_T0
 
-custom_menu.power_off.enable               true              #
-custom_menu.power_off.name                 Power_off         #
-custom_menu.power_off.command              M81               #
+custom_menu.b.enable  true
+custom_menu.b.name    Temp_205
+custom_menu.b.command M42|M104_S205_T0
+
+custom_menu.c.enable  true
+custom_menu.c.name    Select_Left
+custom_menu.c.command T1
+
+custom_menu.d.enable  true
+custom_menu.d.name    Select_Right
+custom_menu.d.command T0
+
+custom_menu.e.enable  true
+custom_menu.e.name    Retract_Tool
+custom_menu.e.command G90|G92_E90|G1_E100_F100|G1_E94_F1800|G4_S5|G1_E0_F3600|M18
+
+custom_menu.f.enable  true
+custom_menu.f.name    Extrude_10mm
+custom_menu.f.command G90|G92_E0|G1_E10_F100|M18
+
+custom_menu.g.enable  true
+custom_menu.g.name    Extrude_100mm
+custom_menu.g.command G90|G92_E0|G1_E100_F100|M18
+
 
 
 ## Network settings

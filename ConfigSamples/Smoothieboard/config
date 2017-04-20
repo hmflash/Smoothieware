@@ -53,15 +53,15 @@ gamma_max_rate                               300.0            # Maximum rate in 
 
 ## Extruder module configuration
 # See http://smoothieware.org/extruder
-extruder.hotend.enable                          true          # Whether to activate the extruder module at all. All configuration is ignored if false
-extruder.hotend.steps_per_mm                    1562          # Steps per mm for extruder stepper
-extruder.hotend.default_feed_rate               600           # Default rate ( mm/minute ) for moves where only the extruder moves
-extruder.hotend.acceleration                    500           # Acceleration for the stepper motor mm/sec²
-extruder.hotend.max_speed                       50            # Maximum speed in mm/s
+extruder.hotend1.enable                          true          # Whether to activate the extruder module at all. All configuration is ignored if false
+extruder.hotend1.steps_per_mm                    1562          # Steps per mm for extruder stepper
+extruder.hotend1.default_feed_rate               600           # Default rate ( mm/minute ) for moves where only the extruder moves
+extruder.hotend1.acceleration                    500           # Acceleration for the stepper motor mm/sec²
+extruder.hotend1.max_speed                       50            # Maximum speed in mm/s
 
-extruder.hotend.step_pin                        2.3           # Pin for extruder step signal
-extruder.hotend.dir_pin                         0.22          # Pin for extruder dir signal ( add '!' to reverse direction )
-extruder.hotend.en_pin                          0.21          # Pin for extruder enable signal
+extruder.hotend1.step_pin                        2.3           # Pin for extruder step signal
+extruder.hotend1.dir_pin                         0.22          # Pin for extruder dir signal ( add '!' to reverse direction )
+extruder.hotend1.en_pin                          0.21          # Pin for extruder enable signal
 
 # Extruder offset
 #extruder.hotend.x_offset                        0            # X offset from origin in mm

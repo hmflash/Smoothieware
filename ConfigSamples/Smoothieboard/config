@@ -21,7 +21,7 @@ gamma_steps_per_mm                           3200             # Steps per mm for
 # Planner module configuration : Look-ahead and acceleration configuration
 # See http://smoothieware.org/motion-control
 acceleration                                 3000             # Acceleration in mm/second/second.
-#z_acceleration                              500              # Acceleration for Z only moves in mm/s^2, 0 uses acceleration which is the default. DO NOT SET ON A DELTA
+z_acceleration                               500              # Acceleration for Z only moves in mm/s^2, 0 uses acceleration which is the default. DO NOT SET ON A DELTA
 junction_deviation                           0.05             # See http://smoothieware.org/motion-control#junction-deviation
 #z_junction_deviation                        0.0              # For Z only moves, -1 uses junction_deviation, zero disables junction_deviation on z moves DO NOT SET ON A DELTA
 
@@ -56,8 +56,8 @@ gamma_max_rate                               300.0            # Maximum rate in 
 extruder.hotend1.enable                          true          # Whether to activate the extruder module at all. All configuration is ignored if false
 extruder.hotend1.steps_per_mm                    1562          # Steps per mm for extruder stepper
 extruder.hotend1.default_feed_rate               600           # Default rate ( mm/minute ) for moves where only the extruder moves
-extruder.hotend1.acceleration                    500           # Acceleration for the stepper motor mm/sec²
-extruder.hotend1.max_speed                       50            # Maximum speed in mm/s
+extruder.hotend1.acceleration                    10000         # Acceleration for the stepper motor mm/sec²
+extruder.hotend1.max_speed                       60            # Maximum speed in mm/s
 
 extruder.hotend1.step_pin                        2.3           # Pin for extruder step signal
 extruder.hotend1.dir_pin                         0.22          # Pin for extruder dir signal ( add '!' to reverse direction )
@@ -69,12 +69,12 @@ extruder.hotend1.en_pin                          0.21          # Pin for extrude
 #extruder.hotend.z_offset                        0            # Z offset from origin in mm
 
 # Firmware retract settings when using G10/G11, these are the defaults if not defined, must be defined for each extruder if not using the defaults
-#extruder.hotend.retract_length                  3            # Retract length in mm
-#extruder.hotend.retract_feedrate                45           # Retract feedrate in mm/sec
-#extruder.hotend.retract_recover_length          0            # Additional length for recover
-#extruder.hotend.retract_recover_feedrate        8            # Recover feedrate in mm/sec (should be less than retract feedrate)
-#extruder.hotend.retract_zlift_length            0            # Z-lift on retract in mm, 0 disables
-#extruder.hotend.retract_zlift_feedrate          6000         # Z-lift feedrate in mm/min (Note mm/min NOT mm/sec)
+extruder.hotend1.retract_length                  6.5          # Retract length in mm
+extruder.hotend1.retract_feedrate                40           # Retract feedrate in mm/sec
+extruder.hotend1.retract_recover_length          0            # Additional length for recover
+extruder.hotend1.retract_recover_feedrate        40           # Recover feedrate in mm/sec (should be less than retract feedrate)
+extruder.hotend1.retract_zlift_length            0            # Z-lift on retract in mm, 0 disables
+extruder.hotend1.retract_zlift_feedrate          300          # Z-lift feedrate in mm/min (Note mm/min NOT mm/sec)
 
 delta_current                                    1.2          # First extruder stepper motor current
 
@@ -82,8 +82,8 @@ delta_current                                    1.2          # First extruder s
 extruder.hotend2.enable                          true         # Whether to activate the extruder module at all. All configuration is ignored if false
 extruder.hotend2.steps_per_mm                    1562         # Steps per mm for extruder stepper
 extruder.hotend2.default_feed_rate               600          # Default rate ( mm/minute ) for moves where only the extruder moves
-extruder.hotend2.acceleration                    500          # Acceleration for the stepper motor, as of 0.6, arbitrary ratio
-extruder.hotend2.max_speed                       50           # mm/s
+extruder.hotend2.acceleration                    10000        # Acceleration for the stepper motor, as of 0.6, arbitrary ratio
+extruder.hotend2.max_speed                       60           # mm/s
 
 extruder.hotend2.step_pin                        2.8          # Pin for extruder step signal
 extruder.hotend2.dir_pin                         2.13         # Pin for extruder dir signal ( add '!' to reverse direction )
@@ -92,6 +92,13 @@ extruder.hotend2.en_pin                          4.29         # Pin for extruder
 #extruder.hotend2.x_offset                       0            # x offset from origin in mm
 #extruder.hotend2.y_offset                       25.0         # y offset from origin in mm
 #extruder.hotend2.z_offset                       0            # z offset from origin in mm
+
+extruder.hotend2.retract_length                  6.5          # Retract length in mm
+extruder.hotend2.retract_feedrate                40           # Retract feedrate in mm/sec
+extruder.hotend2.retract_recover_length          0            # Additional length for recover
+extruder.hotend2.retract_recover_feedrate        40           # Recover feedrate in mm/sec (should be less than retract feedrate)
+extruder.hotend2.retract_zlift_length            0            # Z-lift on retract in mm, 0 disables
+extruder.hotend2.retract_zlift_feedrate          300          # Z-lift feedrate in mm/min (Note mm/min NOT mm/sec)
 
 epsilon_current                                  1.2          # Second extruder stepper motor current
 

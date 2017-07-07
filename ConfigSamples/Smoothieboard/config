@@ -347,7 +347,7 @@ custom_menu.d.command T0
 
 custom_menu.e.enable  true
 custom_menu.e.name    Retract_Tool
-custom_menu.e.command G90|G92_E90|G1_E100_F100|G1_E70_F3600|G4_P2500|G1_E0_F3600|M18
+custom_menu.e.command G90|G92_E90|G1_E100_F300|G1_E80_F3000|G4_P2500|G1_E0_F3000|M18
 
 custom_menu.f.enable  true
 custom_menu.f.name    Extrude_10mm

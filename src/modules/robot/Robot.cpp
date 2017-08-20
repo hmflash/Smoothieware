@@ -1214,7 +1214,12 @@ bool Robot::append_milestone(const float target[], float rate_mm_s)
 
         // adjust acceleration to lowest found, for now just primary axis unless it is an auxiliary move
         // TODO we may need to do all of them, check E won't limit XYZ.. it does on long E moves, but not checking it could exceed the E acceleration.
-        if(auxilliary_move || actuator < N_PRIMARY_AXIS) {
+        if(auxilliary_move && actuators[actuator]->is_extruder()) {
+            float ma =  actuators[actuator]->get_acceleration(); // in mm/sec²
+            if(!isnan(ma)) { // for E only moves (retract), use the actuator acceleration if set
+                acceleration = ma;
+            }
+        } else if(auxilliary_move || actuator < N_PRIMARY_AXIS) {
             float ma =  actuators[actuator]->get_acceleration(); // in mm/sec²
             if(!isnan(ma)) {  // if axis does not have acceleration set then it uses the default_acceleration
                 float ca = fabsf((d/distance) * acceleration);
